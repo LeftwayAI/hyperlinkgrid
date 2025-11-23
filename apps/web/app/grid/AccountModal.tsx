@@ -1,15 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import { usePrivy, useWallets } from '@privy-io/react-auth';
+import { usePrivy, useWallets, useFundWallet } from '@privy-io/react-auth';
 import { useSetActiveWallet } from '@privy-io/wagmi';
 import { useAccount, useWriteContract, usePublicClient } from 'wagmi';
 import { CONTRACTS, MOCK_USDC_ABI } from '../../lib/contracts';
 import { parseUnits } from 'viem';
+import { baseSepolia } from 'viem/chains';
 
 export default function AccountModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const { logout, user } = usePrivy();
   const { wallets } = useWallets();
+  const { fundWallet } = useFundWallet();
   const { setActiveWallet } = useSetActiveWallet();
   const { address, isConnected } = useAccount();
   const { writeContractAsync } = useWriteContract();
@@ -46,6 +48,15 @@ export default function AccountModal({ isOpen, onClose }: { isOpen: boolean; onC
     }
   }
 
+  const handleTopUp = async () => {
+    if (!address) return;
+    try {
+      await fundWallet({ address });
+    } catch (e) {
+      console.error("Funding failed:", e);
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -75,6 +86,14 @@ export default function AccountModal({ isOpen, onClose }: { isOpen: boolean; onC
               {user?.wallet?.address || address || 'No Wallet Connected'}
             </p>
           </div>
+
+           {/* Top Up (Coinbase Pay / MoonPay) */}
+           <button 
+            onClick={handleTopUp}
+            className="w-full bg-blue-600 text-white border border-black py-2 text-xs font-bold hover:bg-blue-700 transition-colors uppercase"
+          >
+            Top Up Wallet
+          </button>
 
            {/* Testnet Faucet */}
            <div className="pt-4 border-t border-black/10">

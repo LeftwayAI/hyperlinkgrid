@@ -2,6 +2,7 @@
   "name": "@hyperlinkgrid/contracts",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "hardhat compile",
     "clean": "hardhat clean",
@@ -11,15 +12,27 @@
     "lint": "echo \"No smart contract linting configured\""
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
     "@types/node": "^20.11.20",
-    "hardhat": "^2.22.4",
+    "hardhat": "^3.0.0",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.1.2",
+    "@nomicfoundation/hardhat-ethers": "^4.0.3",
+    "@nomicfoundation/hardhat-ignition": "^3.0.5",
+    "@nomicfoundation/hardhat-ignition-ethers": "^3.0.5",
+    "@nomicfoundation/hardhat-network-helpers": "^3.0.3",
+    "@nomicfoundation/hardhat-verify": "^3.0.7",
     "@openzeppelin/contracts": "^5.4.0",
-    "dotenv": "^17.2.3"
+    "@pythnetwork/entropy-sdk-solidity": "^2.2.1",
+    "@typechain/hardhat": "^9.1.0",
+    "chai": "^4.5.0",
+    "dotenv": "^17.2.3",
+    "hardhat-gas-reporter": "^2.3.0",
+    "solidity-coverage": "^0.8.16",
+    "typechain": "^8.3.2"
   }
 }
