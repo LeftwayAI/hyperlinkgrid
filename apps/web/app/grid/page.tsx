@@ -106,11 +106,11 @@ export default function GridPage() {
     }
 
     if (!isValidHex(inputColor)) {
-      alert("Invalid Hex Color");
+      console.error("Invalid Hex Color");
       return;
     }
     if (!inputUrl) {
-      alert("Please enter a URL");
+      console.error("Please enter a URL");
       return;
     }
 
@@ -149,14 +149,19 @@ export default function GridPage() {
       setStatusMsg('Success!');
       await delay(1000);
       refetchNextId();
-      alert("Tile Purchased Successfully!");
+      // alert("Tile Purchased Successfully!");
       setInputUrl(''); // Reset URL
     } catch (e) {
       console.error(e);
-      alert("Transaction Failed: " + (e as Error).message);
+      setStatusMsg("Transaction Failed");
+      // alert("Transaction Failed: " + (e as Error).message);
     } finally {
       setIsProcessing(false);
-      setStatusMsg('');
+      // setStatusMsg(''); // Keep success message visible for a bit? 
+      // Actually the original code cleared it. Let's clear it after a delay if it was success, or keep it if it failed?
+      // Original code: finally { setIsProcessing(false); setStatusMsg(''); }
+      // I'll just reset it after a short delay if I want to show success.
+      setTimeout(() => setStatusMsg(''), 3000);
     }
   };
 

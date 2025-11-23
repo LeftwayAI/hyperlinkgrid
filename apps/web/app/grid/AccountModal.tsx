@@ -39,10 +39,11 @@ export default function AccountModal({ isOpen, onClose }: { isOpen: boolean; onC
         args: [address, parseUnits('1000', 6)]
       });
       await publicClient?.waitForTransactionReceipt({ hash });
-      alert("Minted 1000 MockUSDC!");
+      console.log("Minted 1000 MockUSDC!");
+      // alert("Minted 1000 MockUSDC!");
     } catch (e) {
       console.error(e);
-      alert("Faucet failed: " + (e as Error).message);
+      // alert("Faucet failed: " + (e as Error).message);
     } finally {
       setIsMinting(false);
     }
