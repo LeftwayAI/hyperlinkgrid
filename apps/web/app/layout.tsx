@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "Hyperlinkgrid",
@@ -38,8 +39,13 @@ export default function RootLayout({
       lang="en"
       className={`${satoshi.variable} ${satoshiRegular.variable} ${satoshiLightItalic.variable}`}
     >
-      <body className="bg-brand text-white antialiased">{children}</body>
+      <body className="bg-white text-black antialiased">
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }
+
 
