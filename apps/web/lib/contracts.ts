@@ -2,8 +2,8 @@ import { Address } from "viem"
 
 export const CONTRACTS = {
   baseSepolia: {
-    Hyperlinkgrid: "0x02cbEb3B9DE106872Bf3b647f00f556357FCefbB" as Address,
-    USDC: "0xa19221E4653eB8abaBe4b32dB80DF97A21Eb375b" as Address,
+    Hyperlinkgrid: "0x68417a315aFf80a7f0C8F7230B9B8eb37271e46E" as Address,
+    USDC: "0xa731cECEa2CA0BfeB11328A4598202f736168997" as Address,
   },
 }
 
@@ -36,6 +36,25 @@ export const HYPERLINKGRID_ABI = [
         ],
         name: "",
         type: "tuple"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    inputs: [
+      { name: "startId", type: "uint256" },
+      { name: "count", type: "uint256" }
+    ],
+    name: "getTilesBatch",
+    outputs: [
+      {
+        components: [
+          { name: "url", type: "string" },
+          { name: "color", type: "uint24" }
+        ],
+        name: "",
+        type: "tuple[]"
       }
     ],
     stateMutability: "view",

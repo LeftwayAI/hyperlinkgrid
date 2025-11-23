@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand: #0000ff;
+  
+  --font-satoshi: var(--font-satoshi), sans-serif;
+  --font-satoshi-regular: var(--font-satoshi-regular), var(--font-satoshi), sans-serif;
+  --font-satoshi-light: var(--font-satoshi-light-italic), var(--font-satoshi), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+  
+  --tracking-brand: -0.03em;
+}
+
 :root {
   color-scheme: dark;
   background-color: #0000ff;

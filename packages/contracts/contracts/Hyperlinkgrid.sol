@@ -129,6 +129,19 @@ contract Hyperlinkgrid is ERC721, Ownable {
         return tiles[_id];
     }
 
+    /**
+     * @notice Batch fetch tiles to avoid many RPC calls
+     * @param startId The starting ID
+     * @param count The number of tiles to fetch
+     */
+    function getTilesBatch(uint256 startId, uint256 count) external view returns (Tile[] memory) {
+        Tile[] memory batch = new Tile[](count);
+        for (uint256 i = 0; i < count; i++) {
+            batch[i] = tiles[startId + i];
+        }
+        return batch;
+    }
+
     // =============================================================
     //                         ADMIN
     // =============================================================

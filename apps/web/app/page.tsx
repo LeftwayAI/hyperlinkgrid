@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -13,13 +14,23 @@ export default function Home() {
           alt="Hyperlinkgrid logo"
           className="drop-shadow-[0_0_16px_rgba(255,255,255,0.35)]"
         />
-        <div className="grid gap-3 text-center text-base leading-relaxed text-white/90 sm:text-left sm:text-lg md:text-2xl">
+        <div className="grid gap-3 text-center text-base leading-relaxed text-white/90 sm:text-lg md:text-2xl">
           <span>1 grid.</span>
           <span>10,000 hyperlinks.</span>
           <span>$100 to add a hyperlink to the grid.</span>
           <span>$100K to 10 random winners when the last one sells.</span>
         </div>
-        <h1 className="mt-4 flex items-baseline gap-0 tracking-brand text-3xl md:text-4xl">
+        
+        <div className="mt-8">
+          <Link 
+            href="/grid"
+            className="inline-flex items-center gap-2 border border-white px-6 py-3 text-sm font-bold uppercase tracking-wider text-white hover:bg-white hover:text-brand transition-colors"
+          >
+            See The Grid <span className="text-lg leading-none">→</span>
+          </Link>
+        </div>
+
+        <h1 className="mt-4 flex justify-center items-baseline gap-0 tracking-brand text-3xl md:text-4xl">
           <span className="font-satoshi-regular text-white">Hyper</span>
           <span className="font-satoshi-light italic text-white">linkgrid</span>
         </h1>

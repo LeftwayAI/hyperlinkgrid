@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "Hyperlinkgrid",
-  description: "Minimal web entry point for the Hyperlinkgrid project."
+  description: "Minimal web entry point for the Hyperlinkgrid project.",
+  icons: {
+    icon: "/assets/logo-white.svg",
+  },
 };
 
 const satoshi = localFont({
@@ -37,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${satoshi.variable} ${satoshiRegular.variable} ${satoshiLightItalic.variable}`}
+      className={`${satoshi.variable} ${satoshiRegular.variable} ${satoshiLightItalic.variable} ${GeistMono.variable}`}
     >
       <body className="bg-white text-black antialiased">
         <Providers>
