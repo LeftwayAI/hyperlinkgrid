@@ -28,7 +28,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         appearance: {
           theme: 'light',
           accentColor: '#0000FF',
-          logo: 'https://hyperlinkgrid.xyz/logo.png', // Placeholder
+          logo: 'https://hyperlinkgrid.xyz/assets/privy-logo.png',
         },
         embeddedWallets: {
           ethereum: {
