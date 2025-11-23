@@ -1,6 +1,23 @@
 node_modules
-.env*
+.env
+.env.local
+.env.*
 /ref
 .turbo
 dist
 
+# Next.js
+.next
+out
+build
+
+# Hardhat
+packages/contracts/artifacts
+packages/contracts/cache
+packages/contracts/typechain-types
+packages/contracts/coverage
+packages/contracts/coverage.json
+
+# System
+.DS_Store
+Thumbs.db
