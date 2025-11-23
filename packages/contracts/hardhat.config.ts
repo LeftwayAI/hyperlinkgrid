@@ -1,12 +1,12 @@
 import { HardhatUserConfig } from "hardhat/config"
-// import "@nomicfoundation/hardhat-toolbox";
-import "@nomicfoundation/hardhat-ethers"
-import "@nomicfoundation/hardhat-verify"
+import hardhatVerify from "@nomicfoundation/hardhat-verify"
+import hardhatEthers from "@nomicfoundation/hardhat-ethers"
 import * as dotenv from "dotenv"
 
 dotenv.config()
 
 const config: HardhatUserConfig = {
+  plugins: [hardhatVerify, hardhatEthers],
   solidity: "0.8.24",
   networks: {
     "base-sepolia": {

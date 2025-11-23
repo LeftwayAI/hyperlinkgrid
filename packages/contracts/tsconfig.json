@@ -1,21 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "commonjs",
-    "strict": true,
+    "target": "es2022",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "strict": true,
     "outDir": "dist",
-    "types": [
-      "node",
-      "hardhat"
-    ]
+    "types": ["node", "hardhat", "@nomicfoundation/hardhat-verify"]
   },
-  "include": [
-    "hardhat.config.ts",
-    "scripts",
-    "test",
-    "contracts"
-  ]
+  "include": ["hardhat.config.ts", "scripts", "test", "contracts"]
 }
-
