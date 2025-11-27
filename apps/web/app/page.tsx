@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen max-h-[100dvh] flex-col justify-between gap-4 overflow-hidden bg-brand px-6 py-6 text-center text-white md:gap-8 md:px-12 md:py-10">
+    <main className="flex h-[100dvh] flex-col justify-between gap-4 overflow-hidden bg-brand px-6 py-6 text-center text-white md:gap-8 md:px-12 md:py-10">
       <section className="flex flex-col items-center gap-5">
         <div className="grid gap-3 text-center text-base leading-relaxed text-white/90 sm:text-lg md:text-2xl mb-6">
           <span>1 grid.</span>
