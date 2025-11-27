@@ -5,13 +5,13 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex h-[100dvh] flex-col justify-between gap-4 overflow-hidden bg-brand px-6 py-6 text-center text-white md:gap-8 md:px-12 md:py-10">
+    <main className="flex h-dvh flex-col justify-between gap-4 overflow-hidden bg-brand px-6 py-6 text-center text-white md:gap-8 md:px-12 md:py-10">
       <section className="flex flex-col items-center gap-5">
         <div className="grid gap-3 text-center text-base leading-relaxed text-white/90 sm:text-lg md:text-2xl mb-6">
           <span>1 grid.</span>
           <span>10,000 hyperlinks.</span>
           <span>$100 to add a hyperlink to the grid.</span>
-          <span>$100K to 10 random winners when the last one sells.</span>
+          <span>$1,000,000 split between 10 random winners.</span>
         </div>
 
         <Image
@@ -26,9 +26,9 @@ export default function Home() {
           <span className="font-satoshi-regular text-white">Hyper</span>
           <span className="font-satoshi-light italic text-white">linkgrid</span>
         </h1>
-        
+
         <div className="mt-4">
-          <Link 
+          <Link
             href="/grid"
             className="inline-flex items-center gap-2 border border-white px-6 py-3 text-sm font-bold uppercase tracking-wider text-white hover:bg-white hover:text-brand transition-colors"
           >
