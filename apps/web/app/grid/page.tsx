@@ -166,11 +166,11 @@ export default function GridPage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center bg-brand text-black font-sans selection:bg-black selection:text-white pt-[72px]">
+    <main className="flex min-h-screen flex-col items-center bg-brand text-black font-sans selection:bg-black selection:text-white pt-[56px] md:pt-[72px]">
       <AccountModal isOpen={isAccountModalOpen} onClose={() => setIsAccountModalOpen(false)} />
 
       {/* HEADER - Centered and Constrained */}
-      <header className="fixed top-0 left-0 w-full z-50 flex justify-center bg-brand border-b border-white/20 h-[72px]">
+      <header className="fixed top-0 left-0 w-full z-50 flex justify-center bg-brand border-b border-white/20 h-[56px] md:h-[72px]">
         <div className="w-full max-w-[1000px] px-4 md:px-8 flex justify-between items-center text-white h-full">
           <div className="relative h-8 w-48">
             <Link href="/">
@@ -200,117 +200,45 @@ export default function GridPage() {
       </header>
 
       {/* PROGRESS BAR CONTAINER */}
-      <div className="w-full max-w-[1000px] px-4 md:px-8 mt-8">
+      <div className="w-full max-w-[1000px] px-2 md:px-8 mt-3 md:mt-8">
         <div className="bg-white border border-black p-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
           {mounted ? (
-            <div className="flex flex-col gap-2 mb-3 px-1 pt-1 font-mono text-sm text-black">
+            <div className="flex flex-col gap-2 px-1 pt-1 font-mono text-sm text-black">
               <div className="flex justify-between">
-                <span><span className="font-bold">{Number(nextId) ? Number(nextId) - 1 : 0} hyperlinks</span> added to the grid</span>
+                <span><span className="font-bold">{Number(nextId) ? Number(nextId) - 1 : 0} hyperlinks</span> ongrid</span>
                 <span className="text-gray-400">/ 10,000</span>
               </div>
+              <div className="w-full h-4 bg-gray-100 border border-black/10 relative">
+                <div className="absolute top-0 left-0 h-full bg-brand transition-all duration-1000" style={{ width: `${progressPercentage}%` }} />
+              </div>
               <div className="flex justify-between">
-                <span><span className="font-bold">${currentRevenue.toLocaleString()}</span> added to the rewards pool</span>
+                <span><span className="font-bold">${currentRevenue.toLocaleString()}</span> locked</span>
                 <span className="text-gray-400">/ $1,000,000</span>
               </div>
             </div>
           ) : (
-            <div className="flex flex-col gap-2 mb-3 px-1 pt-1 font-mono text-sm text-black opacity-50">
+            <div className="flex flex-col gap-2 px-1 pt-1 font-mono text-sm text-black opacity-50">
               <div className="flex justify-between">
-                <span><span className="font-bold">0 hyperlinks</span> added to the grid</span>
+                <span><span className="font-bold">0 hyperlinks</span> ongrid</span>
                 <span className="text-gray-400">/ 10,000</span>
               </div>
+              <div className="w-full h-4 bg-gray-100 border border-black/10 relative">
+                <div className="absolute top-0 left-0 h-full bg-brand transition-all duration-1000" style={{ width: '0%' }} />
+              </div>
               <div className="flex justify-between">
-                <span><span className="font-bold">$0</span> added to the rewards pool</span>
+                <span><span className="font-bold">$0</span> locked</span>
                 <span className="text-gray-400">/ $1,000,000</span>
               </div>
             </div>
           )}
-          <div className="w-full h-4 bg-gray-100 border border-black/10 relative">
-            <div className="absolute top-0 left-0 h-full bg-brand transition-all duration-1000" style={{ width: mounted ? `${progressPercentage}%` : '0%' }} />
-          </div>
         </div>
       </div>
 
       {/* MAIN CONTENT */}
-      <div className="w-full max-w-[1000px] px-4 md:px-8 py-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="w-full max-w-[1000px] px-2 md:px-8 py-3 md:py-8 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-8">
 
-        {/* LEFT: CONTROLS */}
-        <div className="bg-white border border-black p-6 h-full flex flex-col justify-between shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-
-          <div>
-            <h2 className="font-bold text-sm tracking-wider border-b border-black pb-2 mb-6">ADD THE NEXT HYPERLINK</h2>
-
-            {/* CUSTOMIZE */}
-            <div className="space-y-4 mb-6">
-              {/* URL Input */}
-              <div className="relative flex items-center border border-black focus-within:ring-1 focus-within:ring-brand">
-                <span className="pl-3 pr-1 text-gray-400 text-sm select-none font-mono">https://</span>
-                <input
-                  type="text"
-                  placeholder="hyperlinkgrid.xyz"
-                  className="w-full p-2 pl-0 text-sm focus:outline-none font-mono bg-transparent"
-                  value={inputUrl}
-                  onChange={handleUrlChange}
-                />
-              </div>
-
-              {/* Color Input */}
-              <div className="flex gap-2">
-                <div className="relative w-10 h-10 border border-black cursor-pointer overflow-hidden group">
-                  <input
-                    type="color"
-                    className="absolute -top-2 -left-2 w-16 h-16 p-0 cursor-pointer opacity-0"
-                    value={inputColor}
-                    onChange={(e) => setInputColor(e.target.value)}
-                  />
-                  <div className="w-full h-full" style={{ backgroundColor: inputColor }} />
-                </div>
-                <input
-                  type="text"
-                  value={inputColor}
-                  onChange={handleColorChange}
-                  className={`flex-1 border border-black px-3 font-mono text-sm focus:outline-none focus:ring-1 ${isValidHex(inputColor) ? 'focus:ring-brand' : 'focus:ring-red-500 text-red-500'}`}
-                  maxLength={7}
-                />
-              </div>
-            </div>
-
-            {/* PREVIEW */}
-            <div className="mb-6">
-              <label className="block text-xs font-bold mb-2 uppercase tracking-wider text-gray-400">Preview</label>
-              <div
-                className="w-full aspect-square border border-black relative overflow-hidden transition-colors duration-300 group flex items-center justify-center"
-                style={{ backgroundColor: isValidHex(inputColor) ? inputColor : '#FFFFFF' }}
-              >
-                {inputUrl && (
-                  <a 
-                    href={`https://${inputUrl}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-white mix-blend-difference pointer-events-auto hover:underline decoration-white"
-                  >
-                    <span className="text-xs font-bold uppercase tracking-wide">Preview link</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* ACTION */}
-          <div>
-            <button
-              onClick={handleBuy}
-              disabled={isProcessing}
-              className="w-full bg-black text-white border border-black py-4 hover:bg-brand hover:border-brand hover:shadow-[2px_2px_0px_0px_#FFFFFF] active:translate-y-[1px] active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed transition-all font-bold uppercase tracking-widest"
-            >
-              {isProcessing ? (statusMsg || "PROCESSING...") : authenticated ? "BUY FOR $100" : "LOG IN TO BUY"}
-            </button>
-          </div>
-        </div>
-
-        {/* RIGHT: GRID VISUALIZATION */}
-        <div className="md:col-span-2 bg-white border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] aspect-square relative overflow-hidden">
+        {/* GRID VISUALIZATION - First on mobile */}
+        <div className="md:col-span-2 md:order-2 bg-white border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] aspect-square relative overflow-hidden">
           {/* 
             TODO: Future Mobile Navigation Improvements
             - Implement zoom in/out functionality (pinch-to-zoom)
@@ -382,15 +310,90 @@ export default function GridPage() {
           {mintedTiles.length === 0 && !nextId && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               {nextIdError ? (
-                 <div className="bg-white p-4 border border-red-500 text-red-500 font-mono text-xs max-w-md pointer-events-auto">
-                   <p className="font-bold mb-2">ERROR CONNECTING TO GRID</p>
-                   <p>{nextIdError.message}</p>
-                 </div>
+                <div className="bg-white p-4 border border-red-500 text-red-500 font-mono text-xs max-w-md pointer-events-auto">
+                  <p className="font-bold mb-2">ERROR CONNECTING TO GRID</p>
+                  <p>{nextIdError.message}</p>
+                </div>
               ) : (
-                 <p className="text-brand animate-pulse font-bold bg-white p-4 border border-brand shadow-lg">CONNECTING TO GRID...</p>
+                <p className="text-brand animate-pulse font-bold bg-white p-4 border border-brand shadow-lg">CONNECTING TO GRID...</p>
               )}
             </div>
           )}
+        </div>
+
+        {/* CONTROLS - Second on mobile, first in DOM for desktop order */}
+        <div className="md:order-1 bg-white border border-black p-4 md:p-6 h-full flex flex-col justify-between shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+
+          <div>
+            <h2 className="font-bold text-sm font-mono">Add the next hyperlink</h2>
+
+            {/* CUSTOMIZE */}
+            <div className="pt-4 space-y-4 mb-4 md:mb-6">
+              {/* URL Input */}
+              <div className="relative flex items-center border border-black focus-within:ring-1 focus-within:ring-brand">
+                <span className="pl-3 pr-1 text-gray-400 text-base select-none font-mono tracking-tighter">https://</span>
+                <input
+                  type="text"
+                  placeholder="hyperlinkgrid.xyz"
+                  className="w-full p-2 pl-0 text-base focus:outline-none font-mono bg-transparent tracking-tighter"
+                  value={inputUrl}
+                  onChange={handleUrlChange}
+                />
+              </div>
+
+              {/* Color Input */}
+              <div className="flex gap-2 w-full min-w-0">
+                <div className="relative w-10 h-10 shrink-0 border border-black cursor-pointer overflow-hidden group">
+                  <input
+                    type="color"
+                    className="absolute -top-2 -left-2 w-16 h-16 p-0 cursor-pointer opacity-0"
+                    value={inputColor}
+                    onChange={(e) => setInputColor(e.target.value)}
+                  />
+                  <div className="w-full h-full" style={{ backgroundColor: inputColor }} />
+                </div>
+                <input
+                  type="text"
+                  value={inputColor}
+                  onChange={handleColorChange}
+                  className={`flex-1 min-w-0 border border-black px-3 font-mono text-base focus:outline-none focus:ring-1 ${isValidHex(inputColor) ? 'focus:ring-brand' : 'focus:ring-red-500 text-red-500'}`}
+                  maxLength={7}
+                />
+              </div>
+            </div>
+
+            {/* PREVIEW */}
+            <div className="mb-4 md:mb-6">
+              <label className="block text-xs font-bold mb-2 uppercase tracking-wider text-gray-400">Preview</label>
+              <div
+                className="w-full aspect-square border border-black relative overflow-hidden transition-colors duration-300 group flex items-center justify-center"
+                style={{ backgroundColor: isValidHex(inputColor) ? inputColor : '#FFFFFF' }}
+              >
+                {inputUrl && (
+                  <a
+                    href={`https://${inputUrl}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-white mix-blend-difference pointer-events-auto hover:underline decoration-white"
+                  >
+                    <span className="text-xs font-bold uppercase tracking-wide">Preview link</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* ACTION */}
+          <div>
+            <button
+              onClick={handleBuy}
+              disabled={isProcessing}
+              className="w-full bg-brand text-white border border-black py-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] disabled:opacity-50 disabled:cursor-not-allowed transition-all font-mono"
+            >
+              {isProcessing ? (statusMsg || "Processing...") : authenticated ? "Buy for $100" : "Log in to buy · $100"}
+            </button>
+          </div>
         </div>
       </div>
 
